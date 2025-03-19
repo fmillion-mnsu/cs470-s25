@@ -4,4 +4,4 @@ Spring 2025
 
 * **[Course Syllabus](SYLLABUS.md)**
 * Individual Assignments:
-  * **[Individual Assignment 1](I_ASSIGN1.md) - MNSU Site User Test
+  * **[Individual Assignment 1](I_ASSIGN1.md)** - MNSU Site User Test
