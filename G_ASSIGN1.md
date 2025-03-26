@@ -22,7 +22,7 @@ The experimental design is as follows:
 
     > Your target can be a square, circle or other shape - again, be *consistent*, change only the *size* of the target, not its shape. 
     >
-    > A square or rectangular target is most ideal since you do not need to deal with a non-rectangular bounding box to detect a successful click. If you are not using a rectangular target, you need to account for touches that happen within the rectangular bounding box but are not actually part of the target.
+    > A square or rectangular target is most ideal since you do not need to deal with a non-rectangular bounding box to detect a successful click. If you are not using a rectangular target, you need to account for clicks or touches that happen within the rectangular bounding box but are not actually part of the target.
     >
     > ![Image illustrating that touching within the bounding box but outside of a non-rectangular shape must be considered an error](assets/boundingbox.png)
 
@@ -134,3 +134,5 @@ You should include the Excel file you use to generate these values in your final
 3. Your data result file(s).
 
 4. The Excel spreadsheet, with your data that you used to compute your results.
+
+This project will be due on **Sunday, April 27th** at **11:59 PM**.
