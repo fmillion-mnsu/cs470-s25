@@ -4,13 +4,13 @@
 
 ## Overview
 
-For this project, you will write a simple program to test *[Fitts' Law](https://lawsofux.com/fittss-law/)*. In this experiment, you will measure how fast a user can point to and click on random circles shown on the screen while using a mouse or a trackpad.
-
-As part of this experiment, you will write software to implement the experiment, and **recruit ten (10) participants** to participate in the experiment.
+For this project, you will write a simple program to test *[Fitts' Law](https://lawsofux.com/fittss-law/)*. In this experiment, you will measure how fast a user can point to and click on targets shown on the screen while using a mouse, trackpad, or touchscreen. You will then use the data you collect to prove Fitts' Law.
 
 ## Experimental Design
 
 The experimental design is as follows:
+
+* You will **recruit ten (10) participants** to participate in the experiment.
 
 * Each participant will engage in a **test**. The test will consist of 180 **trials**.
 
@@ -20,7 +20,11 @@ The experimental design is as follows:
 
 * For each *trial*, you will present a target of one of three diameters on screen, which will be located one of 3 distances initial position of the cursor, in one of 2 directions (left or right). 
 
-    > Your target can be a circle or square - again, be *consistent*, change only the *size* of the target, not its shape. A square is ideal since you do not need to deal with a non-rectangular bounding box to detect a successful click.
+    > Your target can be a square, circle or other shape - again, be *consistent*, change only the *size* of the target, not its shape. 
+    >
+    > A square or rectangular target is most ideal since you do not need to deal with a non-rectangular bounding box to detect a successful click. If you are not using a rectangular target, you need to account for touches that happen within the rectangular bounding box but are not actually part of the target.
+    >
+    > ![Image illustrating that touching within the bounding box but outside of a non-rectangular shape must be considered an error](assets/boundingbox.png)
 
 * The program must provide feedback to the user when each iteration is completed, and also present a completion screen at the end of the test. 
 
@@ -29,7 +33,15 @@ The experimental design is as follows:
 ## Instructions
 
 * **Design an experimental protocol** to run your study. Determine when and where the experiment will take place, who your participants will be and what your participants will be doing during the experiment.
+
+    > Your protocol must fulfill the experimental design, but you can adjust the protocol as appropriate for your app design. For example, you can determine the location of the test (or specify that it is at any location convenient).
+
 * **Write the code** to implement the experiment. Test your code thoroughly! (You don’t want a crash mid-experiment…)
+
+    > How you design your project is largely open-ended. As long as your project fulfills the experimental design, you can be as creative as you like with the program. 
+    >
+    > Your group may use any programming language you like and you may design the app in any style - desktop application, mobile application, Web application, etc. are all acceptable.
+
 * **Recruit 10 participants** for this test with similar computer usage abilities. Participants must be 18 years or older.
 
     > Your participants can come from any source. You may ask other CS students, students outside the program, roommates, family or friends to participate. The only requirements are that the participants must be 18 years of age or older, and that they do not depend on assistive devices to use the computer.
@@ -38,7 +50,7 @@ The experimental design is as follows:
 
 ## Program requirements
 
-* When the program starts, it should present the Informed Consent document and solicit the user's assent. If the user does not agree to the ICF, the program should terminate.
+* When the program starts, it should present the Informed Consent document and solicit the user's consent. If the user does not agree to the ICF, the program should terminate.
 
     > Alternatively, you could design your program to allow multiple tests without needing to be restarted; in this case, you might have a "Welcome" screen with a "Start" button or keypress which displays the ICF. If the user does not consent, return to the Welcome screen; if they do, proceed to the experiment phase.
 
@@ -46,18 +58,18 @@ The experimental design is as follows:
 
 * Your program should execute the trials as indicated in the [Experimental Design](#experimental-design) section. For each trial, the program should record:
 
-    * The setup of the trial (circle size, distance, direction)
-    * The time taken from when the trial began to when the user successfully clicked the mouse.
-    * The distance the mouse traveled (you can calculate this as pixels)
-    * How many errors (if any) the user caused before clicking successfully
+    * The setup of the trial (target size, distance, direction).
+    * The time taken from when the trial began to when the user successfully acquired the target. Note that clicking/touching outside the target does not count as success.
+    * The distance the mouse traveled (you can calculate this as pixels).
+    * How many errors (if any, otherwise store a 0) the user caused before acquiring successfully. 
 
-    Store the data in an easily parsable format such as JSON or CSV.
+    Store the data in an easily parsable format such as JSON or CSV. CSV is recommended as it'll make your analysis easier later on since you can import the CSV into Excel easily.
 
 * At the start of each trial, the cursor should be at the **center of the screen**.
 
-    * Each individual trial involves having the participant click on the circle as fast as they can. For each trial, the cursor must begin at the **center** of the screen. After repositioning the cursor, the user would then move the cursor towards a circle and click on the circle.
+    * Each individual trial involves having the participant click or touch on the target as fast as they can. For each trial, the cursor must begin at the **center** of the screen. After repositioning the cursor, the user would then move the cursor towards a target and click on the target.
 
-        Depending on the language you use to code this experiment, you can either force the mouse pointer back to the center of the screen at the start of each test, or if that is not possible, you can require the user to *click* a "Next" button which is at the center of the screen, thus placing the cursor back at the start by virtue of the participant clicking the button.
+        Depending on the language you use to code this experiment, you can either force the mouse pointer back to the center of the screen at the start of each test, or if that is not possible, you can require the user to *click* a "Next" button which is at the center of the screen, thus placing the cursor back at the start by virtue of the participant clicking the button. If you choose to do a touch-screen-based experiment, you will want to use the second option to ensure the user's finger has moved back to the middle of the screen before the next test begins.
 
 * You will present each possible configuration a total of 10 times. There will be a total of 180 trials in each experiment run. You should present the trials **completely randomly**, but the requirement of running each configuration 10 times must be observed.
 
