@@ -1,5 +1,7 @@
 # Fitts' Law Project
 
+![XKCD comic](https://imgs.xkcd.com/comics/human_subjects_2x.png)
+
 ## Overview
 
 For this project, you will write a simple program to test *[Fitts' Law](https://lawsofux.com/fittss-law/)*. In this experiment, you will measure how fast a user can point to and click on random circles shown on the screen while using a mouse or a trackpad.
