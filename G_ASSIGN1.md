@@ -4,33 +4,98 @@
 
 For this project, you will write a simple program to test *[Fitts' Law](https://lawsofux.com/fittss-law/)*. In this experiment, you will measure how fast a user can point to and click on random circles shown on the screen while using a mouse or a trackpad.
 
+As part of this experiment, you will write software to implement the experiment, and **recruit ten (10) participants** to participate in the experiment.
+
+## Experimental Design
+
+The experimental design is as follows:
+
+* Each participant will engage in a **test**. The test will consist of 180 **trials**.
+
+* At the beginning of a test, present participants with a welcome screen which includes an **informed consent** electronic statement. Have participants agree (and record their choice) before beginning the experiment. This can be done with a button on the screen that says “I agree” or any other method you indicate that requires user interaction to agree.
+
+    > See the [Template Informed Consent Document](ICF.md) for boilerplate text you can use. Make sure to update the document with any specifics for your experiment!
+
+* For each *trial*, you will present a target of one of three diameters on screen, which will be located one of 3 distances initial position of the cursor, in one of 2 directions (left or right). 
+
+    > Your target can be a circle or square - again, be *consistent*, change only the *size* of the target, not its shape. A square is ideal since you do not need to deal with a non-rectangular bounding box to detect a successful click.
+
+* The program must provide feedback to the user when each iteration is completed, and also present a completion screen at the end of the test. 
+
+* The program must also provide a way to terminate the test early. If this is done, data that has been recorded should be discarded. Participants who end the test early do NOT count towards your requirement of 10 participants.
+
 ## Instructions
 
-* Design an experimental protocol to run your study. Determine when and where the experiment will take place, who your participants will be and what your participants will be doing during the experiment.  
-* Recruit 10 participants for this test with similar computer usage abilities. Participants must be 18 years or older.
-* At the same time, write the code to implement the experiment. Test your code thoroughly! (You don’t want a crash mid-experiment…)
+* **Design an experimental protocol** to run your study. Determine when and where the experiment will take place, who your participants will be and what your participants will be doing during the experiment.
+* **Write the code** to implement the experiment. Test your code thoroughly! (You don’t want a crash mid-experiment…)
+* **Recruit 10 participants** for this test with similar computer usage abilities. Participants must be 18 years or older.
+
+    > Your participants can come from any source. You may ask other CS students, students outside the program, roommates, family or friends to participate. The only requirements are that the participants must be 18 years of age or older, and that they do not depend on assistive devices to use the computer.
+    >
+    > The condition of non-assisted computer usage is not intended to be discriminatory. The purpsoe is to minimize the effect that a participant's own abilities might impact the *average* of your results. It is quite common for experimental designs to explicitly specify certain abilities *or disabilities* so as to minimize the effect of independent variables that are outside the scope of the test.
 
 ## Program requirements
 
-* Present participants with a welcome screen which includes an **informed consent** electronic statement. Have participants agree (and record their choice) before beginning the experiment. This can be done with a button on the screen that says “I agree” or any other method you indicate that requires user interaction to agree.
+* When the program starts, it should present the Informed Consent document and solicit the user's assent. If the user does not agree to the ICF, the program should terminate.
 
-* For each trial, you will present a circle of one of three diameters on screen, which will be located one of 3 distances initial position of the cursor, in one of 2 directions (left or right). At the start of each trial, the cursor should be at the center of the screen. and consider two directions (left, right). This yields a total of 18 possible tests (3 sizes * 3 distances * 2 directions).
+    > Alternatively, you could design your program to allow multiple tests without needing to be restarted; in this case, you might have a "Welcome" screen with a "Start" button or keypress which displays the ICF. If the user does not consent, return to the Welcome screen; if they do, proceed to the experiment phase.
 
-* Each individual trial involves having the participant click on the circle as fast as they can. For each trial, the cursor must begin at the **center** of the screen. After repositioning the cursor, the user would then move the cursor towards a circle and click on the circle.
+* Given user consent, your program should generate a **random, unique** Participant ID. This ID can be included in your results file, or you could store results in separate files named with the anonymized Participant ID.
 
-    > Depending on the language you use to code this experiment, you can either force the mouse pointer back to the center of the screen at the start of each test, or if that is not possible, you can require the user to *click* a "Next" button which is at the center of the screen, thus placing the cursor back at the start by virtue of the participant clicking the button.
+* Your program should execute the trials as indicated in the [Experimental Design](#experimental-design) section. For each trial, the program should record:
 
-* You will present each possible configuration a total of 10 times. There will be a total of 180 trials in each experiment run. You should present the trials completely randomly. 
-
-* The software must calculate the time to complete each task, the actual distance travelled for each task and the errors in each task. Errors are instances where the user did not click inside of the circle. Each trial should run until the user successfully clicks inside the circle.
-
-* The program must provide feedback to the user when a task is completed and presents a completion screen at the end of the test. The program must also provide a way to terminate the test early.
-
-* For each trial, the program should record:
     * The setup of the trial (circle size, distance, direction)
     * The time taken from when the trial began to when the user successfully clicked the mouse.
     * The distance the mouse traveled (you can calculate this as pixels)
     * How many errors (if any) the user caused before clicking successfully
+
+    Store the data in an easily parsable format such as JSON or CSV.
+
+* At the start of each trial, the cursor should be at the **center of the screen**.
+
+    * Each individual trial involves having the participant click on the circle as fast as they can. For each trial, the cursor must begin at the **center** of the screen. After repositioning the cursor, the user would then move the cursor towards a circle and click on the circle.
+
+        Depending on the language you use to code this experiment, you can either force the mouse pointer back to the center of the screen at the start of each test, or if that is not possible, you can require the user to *click* a "Next" button which is at the center of the screen, thus placing the cursor back at the start by virtue of the participant clicking the button.
+
+* You will present each possible configuration a total of 10 times. There will be a total of 180 trials in each experiment run. You should present the trials **completely randomly**, but the requirement of running each configuration 10 times must be observed.
+
+    > A good strategy is to create an array, populate it with the values 0 through 17 (or some other way to indicate a trial configuration) 10 times each, then simply shuffle the array. During the test, iterate over the shuffled array to get your trials.
+
+At the end of your 10 participants, you should have **1,800** data points. Once you've collected *all* of your data from 10 participants, proceed to the Analysis section.
+
+## Analysis
+
+Follow these steps to perform the analysis of your Fitts’ Law data.
+
+The data you need to have collected for each is as follows:
+
+* Configuration of the trial (distance and size) 
+* Time to completion in milliseconds
+* Error rates
+
+The steps to perform the analysis are as follows:
+
+1. Calculate the **mean** of the time to completion for each separate configuration. You should end up with 9 mean values (three distances * three sizes).
+
+2. Calculate the **standard deviation** for each configuration. 
+
+    > Refresher: subtract the mean of the values from each value, square each value, add the results, divide by the number of values, and compute the square root
+
+3. Look for **outliers** in your data – typically values that exceed 3 standard deviations from the mean. If you find such values, remove them and recompute the mean. (For this simple analysis, we can simply exclude outliers.)
+
+4. (From this point on, you can use the example Excel sheet.) Calculate the **index of difficulty** in **bits** for each of your 16 configurations. 
+   
+    > To do this, compute ![Logarithm base 2 of A / W + 1](assets/eq1.png) and then compute the ceiling (i.e. raise up to the next whole number). This is the value of ID.
+
+5. Calculate the index of performance for each of your 16 configurations. To do this, compute ![1D over MT / 1000](assets/eq2.png) (assuming your *MT* value is in milliseconds). You can truncate the result to one decimal place.
+
+6. Create a **scatter chart** with the value of ID on the X axis and the value of MT on the Y axis. Plot all 16 configurations on your graph.
+
+7. Add a **linear regression line** to the chart. Also display the equation and the *R<sup>2</sup>* value.
+
+8. **Verify** that the data points closely match the linear regression line. If there are points that are significantly distant from the linear regression line (or if you have a low *R<sup>2</sup>* value) then check your data and make sure you have entered everything correctly.
+
+You should include the Excel file you use to generate these values in your final submission package. The scatter plot should also be included in your report when you discuss your findings.
 
 ## Deliverables
 
@@ -38,11 +103,20 @@ For this project, you will write a simple program to test *[Fitts' Law](https://
 
     Your report should contain:
     
-    * A description of your protocol including the independent and dependent variables and the possible confounding variables in your setting, 
-    * An explanation of the results obtained from linear regression using Fitts’ Law. 
+    * A description of your protocol including the **independent** and **dependent** variables and the possible **confounding** variables in your setting
+    
+    * An explanation of the results obtained from linear regression using Fitts’ Law
+    
     * Answer the following questions: 
+        
         * What difference does it make if tasks are performed in different directions?
+        
         * What differences did you observe between participants with respect to error rates, time completions and distance travelled per task?
+    
     * A discussion of any problems you encountered during the experiment and potential limitations to the experiment.
 
 2. The code used for your experiment.
+
+3. Your data result file(s).
+
+4. The Excel spreadsheet, with your data that you used to compute your results.
