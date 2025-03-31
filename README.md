@@ -10,3 +10,4 @@ Spring 2025
   * [Fitts' Law Study](G_ASSIGN1.md) - Instructions
     * [Sample Informed Consent Document](ICF.md)
     * [Fitts' Law Analysis Excel spreadsheet](FittsLaw.xlsx)
+  * [Comparative Analysis of User Testing](G_ASSIGN2.md) - Instructions
