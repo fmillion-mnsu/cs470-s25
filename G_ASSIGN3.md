@@ -11,6 +11,14 @@ In this exercise, you will find an existing simple casual game written in PyGame
     > Note that you *are* allowed to choose a different game framework, but your entire group should agree on this decision if you make it.
 
     > I **strongly** recommend sticking to casual games, as anything beyond simple games like Space Invaders, Flappy Bird, Pac-Man, Match-3 games (Candy Crush etc.) and so on will prove much more difficult for you to design accommodations for in a short time.
+    >
+    > Here are a few **examples** of projects you can use:
+    >
+    > * [Asteroids](https://github.com/TheBeachLab/asteroids)
+    > * [Flappy Bird](https://github.com/TimoWilken/flappy-bird-pygame)
+    > * [Angry Birds](https://github.com/estevaofon/angry-birds-python)
+    > * [Candy Crush (Match 3 game)](https://github.com/BossManta/PlanetCrush)
+    > * [Pac Man](https://github.com/hbokmann/Pacman)
 
 1. Download and explore the source code.
 
