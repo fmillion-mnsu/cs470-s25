@@ -25,4 +25,3 @@ You must include:
 This is a **group submission** - each group need only submit *one* essay.
 
 Submission is due **April 4th, 2025** at **11:59 PM**.
-
